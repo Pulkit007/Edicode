@@ -1,7 +1,33 @@
+const colors = require("tailwindcss/colors");
+
 module.exports = {
-  content: [],
+  mode: "jit",
+  purge: [
+    "./src/Components/**/*.{js,jsx,ts,tsx}",
+    "./public/index.html",
+    "./src/components/*.{js,jsx}",
+    "./src/Components/**/**/*.{js,jsx,ts,tsx}",
+  ],
   theme: {
-    extend: {},
+    colors: {
+      gray: colors.coolGray,
+      blue: colors.blue,
+      red: colors.rose,
+      pink: colors.fuchsia,
+      indigo: colors.indigo,
+      green: colors.emerald,
+      // white: colors.white,
+      yellow: colors.yellow,
+    },
+    fontFamily: {
+      sans: ["Graphik", "sans-serif"],
+      serif: ["Merriweather", "serif"],
+    },
   },
-  plugins: [],
-}
+  variants: {
+    extend: {
+      // borderColor: ['focus-visible'],
+      opacity: ["disabled"],
+    },
+  },
+};

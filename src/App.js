@@ -1,12 +1,13 @@
 import React from "react";
-import Whiteboard from "./Components/WhiteBoard/WhiteBoard";
 import PlayGround from "./Components/PlayGround/PlayGround";
+import "../node_modules/react-draft-wysiwyg/dist/react-draft-wysiwyg.css"; // eslint-disable-line no-unused-vars
+import "./App.css";
 
 function App() {
   return (
-    <div className="App">
+    <>
       <PlayGround />
-    </div>
+    </>
   );
 }
 
