@@ -1,28 +1,18 @@
 import React, { useEffect, useState } from "react";
-import { Avatar } from "@mui/material";
 import axios from "axios";
 import Editor from "../Editor/Editor";
 import socket from "../socket.io";
-import _, { debounce } from "lodash";
-import { VscLink } from "react-icons/vsc";
-import { MdRecordVoiceOver, MdVoiceOverOff } from "react-icons/md";
-import { BsFillMicFill, BsFillMicMuteFill } from "react-icons/bs";
-import Peer from "peerjs";
+import { debounce } from "lodash";
 import { decode as base64_decode, encode as base64_encode } from "base-64";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import "./PlayGround.css";
 import WhiteBoard from "../WhiteBoard/WhiteBoard";
 import { EditorState, convertFromRaw, convertToRaw } from "draft-js";
-import Draft from "./RichEditor/Draft";
-import faCode from "@fortawesome/fontawesome-free";
-import Bounce from "react-activity/dist/Bounce";
-import "react-activity/dist/Bounce.css";
+import Digital from "react-activity/dist/Digital";
+import "react-activity/dist/Digital.css";
 import Loader from "react-loader-advanced";
-import { FaTimes } from "react-icons/fa";
 import allLanguageDefaultCode from "./Language/Default";
-
-var myPeer = Peer;
 
 function PlayGround(props) {
   const languageToEditorMode = {
@@ -63,7 +53,6 @@ function PlayGround(props) {
   const [roomBody, setRoomBody] = useState("");
   const [input, setInput] = useState("");
   const [output, setOutput] = useState("");
-  const [sliderOpen, setSliderOpen] = useState(false);
 
   const [language, setLanguage] = useState(
     localStorage.getItem("language") ?? "c"
@@ -74,28 +63,23 @@ function PlayGround(props) {
   const [fontSize, setFontSize] = useState(12);
   const idealState = "Idle";
   const runningState = "running";
-  const completedState = "completed";
-  const errorState = "Some error occured";
   const [submissionState, setSubmissionState] = useState(idealState);
-  const [submissionId, setSubmissionId] = useState("");
-  const [submissionIdChecker, setSubmissionIdChecker] = useState(null);
   const [loader, setLoader] = useState(false);
   const [editorState, setEditorState] = useState(() =>
     EditorState.createEmpty()
   );
-  const [showModal, setShowModal] = useState(false);
 
   useEffect(() => {
     console.log({ language, roomBody });
-    if (language == "cpp") {
+    if (language === "cpp") {
       setRoomBody(allLanguageDefaultCode.cpp);
-    } else if (language == "c") {
+    } else if (language === "c") {
       setRoomBody(allLanguageDefaultCode.c);
-    } else if (language == "java") {
+    } else if (language === "java") {
       setRoomBody(allLanguageDefaultCode.java);
-    } else if (language == "python") {
+    } else if (language === "python") {
       setRoomBody(allLanguageDefaultCode.python);
-    } else if (language == "javascript") {
+    } else if (language === "javascript") {
       setRoomBody(allLanguageDefaultCode.javascript);
     } else {
       // Nothing
@@ -161,19 +145,16 @@ function PlayGround(props) {
     switch (language) {
       case "c":
         return 49;
-        break;
       case "cpp":
         return 53;
-        break;
       case "python":
         return 71;
-        break;
       case "java":
         return 62;
-        break;
       case "javascript":
         return 63;
-        break;
+      default:
+        return 53;
     }
   };
 
@@ -223,7 +204,7 @@ function PlayGround(props) {
           axios
             .request(ip)
             .then(function (res) {
-              if (res.data.status.description == "Accepted") {
+              if (res.data.status.description === "Accepted") {
                 let decoded = base64_decode(res.data.stdout);
                 // console.log("decoded", decoded);
                 socket.emit("updateOutput", { value: decoded });
@@ -304,7 +285,7 @@ function PlayGround(props) {
       show={loader}
       message={
         <div className="">
-          <Bounce size={55} />
+          <Digital size={55} />
         </div>
       }
     >

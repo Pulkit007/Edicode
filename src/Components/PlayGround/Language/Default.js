@@ -1,41 +1,36 @@
 const allLanguageDefaultCode = {
-  cpp: `
-#include<iostream>
+  cpp: `#include<iostream>
 using namespace std;
 int main()
-  {
-    // Start writing your code from here!
-	  cout<<"Welcome to CodeSync!";
-	  return 0;
-  }
+{
+  // Start writing your code from here!
+  cout<<"Welcome to Edicode!";
+  return 0;
+}
 `,
-  c: `
-#include <stdio.h>
+  c: `#include <stdio.h>
 int main()
 {
-    // Stat writing code from here
-	printf("Welcome to CodeSync");
+  // Start writing your code from here!
+	printf("Welcome to Edicode");
 	return 0;
 }   
     `,
-  java: `
-import java.util.*;
+  java: `import java.util.*;
 class Main
 {
     public static void main(String[] args)
     {
-        // Start writing code from here :)
-        System.out.print("Welcome To CodeSync");
+        // Start writing your code from here!
+        System.out.print("Welcome to Edicode");
     }
 }
     `,
-  python: `
-# Start writing your code from here
-print("Welcome to CodeSync")
+  python: `# Start writing your code from here!
+print("Welcome to Edicode")
     `,
-  javascript: `
-// Start writing your code from here
-console.log("Welcome to CodeSync")
+  javascript: `// Start writing your code from here!
+console.log("Welcome to Edicode")
     `,
 };
 export default allLanguageDefaultCode;
