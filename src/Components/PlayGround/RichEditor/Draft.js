@@ -1,6 +1,5 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { Editor } from "react-draft-wysiwyg";
-import { EditorState } from "draft-js";
 
 const Draft = ({ editorState, onEditorStateChange }) => {
   return (

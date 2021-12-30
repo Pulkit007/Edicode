@@ -290,6 +290,22 @@ function PlayGround(props) {
       }
     >
       <div style={{ margin: 0, height: "100%", overflow: "hidden" }}>
+        <div className="flex flex-row justify-content-left">
+          <div
+            style={{
+              width: "8%",
+              marginTop: "6px",
+              marginLeft: "1.8%",
+            }}
+          >
+            <img
+              alt="logo"
+              src="./nav-logo.png"
+              style={{ width: "100%" }}
+            ></img>
+          </div>
+        </div>
+        <hr className="mt-1" />
         <div className="grid grid-flow-row grid-cols-2 m0 room-body">
           <div className="">
             <div className="form-container">
