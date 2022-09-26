@@ -70,7 +70,6 @@ function PlayGround(props) {
   );
 
   useEffect(() => {
-    console.log({ language, roomBody });
     if (language === "cpp") {
       setRoomBody(allLanguageDefaultCode.cpp);
     } else if (language === "c") {
@@ -240,7 +239,6 @@ function PlayGround(props) {
   const onEditorStateChange = (editorState) => {
     setEditorState(editorState);
     var contentRaw = convertToRaw(editorState.getCurrentContent());
-    // console.log(contentRaw)
 
     debounce(
       () =>
@@ -278,6 +276,22 @@ function PlayGround(props) {
     element.download = `${language}.${"txt"}`;
     document.body.appendChild(element);
     element.click();
+  };
+
+  const showFile = async (e) => {
+    e.preventDefault();
+    const reader = new FileReader();
+    reader.onload = async (e) => {
+      const text = e.target.result;
+      setRoomBody(text);
+    };
+    reader.readAsText(e.target.files[0]);
+  };
+
+  const hiddenFileInput = React.useRef(null);
+
+  const handleUpload = (e) => {
+    hiddenFileInput.current.click();
   };
 
   return (
@@ -491,6 +505,37 @@ function PlayGround(props) {
                                 />
                               </svg>
                             </button>
+                          </li>
+                          <li>
+                            <button onClick={handleUpload}>
+                              <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                width="40.5"
+                                height="35"
+                                viewBox="0 0 18.385 14.693"
+                                style={{ paddingTop: "10px" }}
+                              >
+                                {" "}
+                                <path
+                                  id="Icon_metro-upload2"
+                                  data-name="Icon metro-upload2"
+                                  d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5z"
+                                  fill="#828282"
+                                ></path>
+                                <path
+                                  id="Icon_metro-upload2"
+                                  data-name="Icon metro-upload2"
+                                  d="M7.646 1.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1-.708.708L8.5 2.707V11.5a.5.5 0 0 1-1 0V2.707L5.354 4.854a.5.5 0 1 1-.708-.708l3-3z"
+                                  fill="#828282"
+                                ></path>
+                              </svg>
+                            </button>
+                            <input
+                              type="file"
+                              ref={hiddenFileInput}
+                              onChange={(e) => showFile(e)}
+                              style={{ display: "none" }}
+                            />
                           </li>
                         </ul>
                       </div>
